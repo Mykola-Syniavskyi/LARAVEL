@@ -27,6 +27,10 @@ class HomeController extends BaseController {
 		return View::make('home')->with('list', $list);
 	}
 
+
+
+
+
 	public function showArticles()
 	{ 
 		$list= array('article1'=>'article/1','article2'=>'article/2',
@@ -37,10 +41,13 @@ class HomeController extends BaseController {
 	}
 
 
+
 	public function showAbout()
 	{ 
 		return View::make('about');
 	}
+
+
 
 
 
@@ -51,10 +58,37 @@ class HomeController extends BaseController {
 	}
 
 	
+
+
+
+
 	public function showContactUs()
-	{ 	$data= Input::get();
-		return View::make('contact-us');
+	{  		 
+		
+		if (Input::has('name') && Input::has('message'))
+		{
+			return Redirect::to('thank')->withInput();
+	
+		}
+		elseif(!$_POST)
+		{	$error=null;
+			return View::make('contact-us', array('error'=>$error));
+							
+		}
+		else
+		{
+			$error='All form_filds must be filled in!';
+			return View::make('contact-us', array('error'=>$error));
+		}	
 	}
 
+	
+
+
+	public function showThank()
+	{	
+		$name = Input::old('name');
+    	return View::make('thank', array('name'=> $name));
+	}
 	
 }

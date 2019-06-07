@@ -31,3 +31,12 @@ Route::get('/article/{N} ', array('as' => '{N}',
 
 
  Route::get('/contact-us ', 'HomeController@showContactUs');
+ //Route::post('/contact-us ', array('as' => 'contact-us', 'uses' =>'HomeController@showContactUs'));
+ Route::post('/contact-us ',array('as' => 'contact-us', 'uses' =>'HomeController@showContactUs'));
+
+
+
+
+
+ Route::get('/thank ', array('as' => 'thank', 'uses' =>'HomeController@showThank'));
+ 
